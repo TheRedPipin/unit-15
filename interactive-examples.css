@@ -1,0 +1,97 @@
+@import url('index.css');
+.info-card button {
+  display: inline-block;
+  width: auto;
+  min-width: 140px;
+  margin: 0.7rem 0.4rem 0 0;
+  padding: 0.5rem 1.2rem;
+  background-color: #f7df1e;
+  color: #1a237e;
+  border: 2px solid #1a237e;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
+  text-align: center;
+  vertical-align: middle;
+}
+.info-card button:last-child {
+  margin-right: 0;
+}
+.info-card button:hover,
+.info-card button:focus {
+  background-color: #1a237e;
+  color: #fff;
+  border-color: #f7df1e;
+  box-shadow: 0 4px 10px rgba(26, 35, 126, 0.15);
+}
+.info-card input[type="number"] {
+  display: inline-block;
+  width: 110px;
+  margin: 0.7rem 0.4rem 0 0;
+  padding: 0.4rem 0.7rem;
+  border: 2px solid #e3f0fc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.2s;
+  vertical-align: middle;
+}
+.info-card input[type="number"]:focus {
+  border-color: #f7df1e;
+  outline: none;
+}
+#text {
+  transition: color 0.3s;
+}
+#text.changed {
+  color: #1a237e;
+  font-weight: bold;
+}
+/* --- Cat Mood Animation --- */
+@keyframes cat-bounce {
+  0%   { transform: scale(1);}
+  30%  { transform: scale(1.2);}
+  50%  { transform: scale(0.95);}
+  70%  { transform: scale(1.1);}
+  100% { transform: scale(1);}
+}
+.cat-bounce {
+  animation: cat-bounce 0.6s;
+}
+/* --- Cat Playground Animation --- */
+@keyframes cat-shake {
+  0% { transform: rotate(0deg);}
+  20% { transform: rotate(-7deg);}
+  40% { transform: rotate(7deg);}
+  60% { transform: rotate(-4deg);}
+  80% { transform: rotate(4deg);}
+  100% { transform: rotate(0deg);}
+}
+.cat-shake {
+  animation: cat-shake 0.5s;
+}
+/* --- Cat Age Calculator Result --- */
+#cat-age-result {
+  transition: color 0.4s, font-size 0.4s;
+  color: #1a237e;
+  font-size: 1.1rem;
+}
+#cat-age-result.cat-age-pop {
+  color: #f7df1e;
+  font-size: 1.3rem;
+}
+/* --- Playground background transition --- */
+body {
+  transition: background 0.7s;
+}
+@media (max-width: 600px) {
+  .info-card button,
+  .info-card input[type="number"] {
+    display: block;
+    width: 100%;
+    margin: 0.6rem 0 0 0;
+    font-size: 1rem;
+  }
+}

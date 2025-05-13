@@ -6,118 +6,7 @@
   <meta name="description" content="Quiz to test your knowledge of JavaScript concepts."/>
   <meta name="keywords" content="JavaScript, Quiz, Coding, Learning"/>
   <title>JavaScript Quiz</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Quiz Card Styling */
-    .quiz-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(26, 35, 126, 0.09);
-      max-width: 500px;
-      margin: 3rem auto 2rem auto;
-      padding: 2.5rem 2rem 2rem 2rem;
-      border-left: 8px solid #f7df1e;
-      min-height: 320px;
-      position: relative;
-      overflow: hidden;
-    }
-    .quiz-card h2 {
-      color: #1a237e;
-      margin-top: 0;
-      font-size: 2rem;
-      margin-bottom: 1.2rem;
-    }
-    .quiz-question {
-      font-size: 1.18rem;
-      color: #1a237e;
-      margin-bottom: 1.2rem;
-      min-height: 48px;
-    }
-    .quiz-options label {
-      display: block;
-      background: #e3f0fc;
-      color: #1a237e;
-      border: 2px solid #f7df1e;
-      border-radius: 6px;
-      padding: 0.7rem 1rem;
-      margin-bottom: 1rem;
-      font-size: 1.08rem;
-      cursor: pointer;
-      transition: background 0.2s, border 0.2s;
-      box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
-    }
-    .quiz-options input[type="radio"] {
-      margin-right: 0.7rem;
-      accent-color: #f7df1e;
-    }
-    .quiz-options label:hover,
-    .quiz-options input[type="radio"]:focus + label {
-      background: #f7df1e;
-      border-color: #1a237e;
-    }
-    .quiz-btn {
-      display: inline-block;
-      background: #f7df1e;
-      color: #1a237e;
-      border: 2px solid #1a237e;
-      border-radius: 6px;
-      padding: 0.7rem 1.5rem;
-      font-weight: bold;
-      font-size: 1.08rem;
-      cursor: pointer;
-      margin-top: 1.2rem;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
-    }
-    .quiz-btn:hover, .quiz-btn:focus {
-      background: #1a237e;
-      color: #fff;
-      border-color: #f7df1e;
-      box-shadow: 0 4px 10px rgba(26, 35, 126, 0.15);
-    }
-    .quiz-progress {
-      color: #1a237e;
-      font-size: 1rem;
-      margin-bottom: 1.2rem;
-      text-align: right;
-    }
-    .quiz-fade {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.5s, transform 0.5s;
-      pointer-events: none;
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-    }
-    .quiz-fade.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-      position: relative;
-    }
-    .quiz-score {
-      font-size: 1.5rem;
-      color: #1a237e;
-      margin-top: 2rem;
-      text-align: center;
-      font-weight: bold;
-    }
-    @media (max-width: 600px) {
-      .quiz-card {
-        padding: 1.2rem 0.5rem;
-        max-width: 99vw;
-      }
-      .quiz-card h2 {
-        font-size: 1.3rem;
-      }
-      .quiz-btn {
-        width: 100%;
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="quiz.css" />
 </head>
 <body>
   <div class="content-wrapper">
@@ -182,13 +71,13 @@
         answer: "let myNumber = 5;"
       },
       {
-        question: "What symbol is used to start a single-line comment?",
+        question: "What is the output of 2 + 2?",
         options: [
-          "//",
-          "<!--",
-          "#"
+          "4",
+          "22",
+          "undefined"
         ],
-        answer: "//"
+        answer: "4"
       },
       {
         question: "Which of these is a string?",
@@ -254,7 +143,7 @@
         const id = `q${index}_${opt.replace(/[^a-zA-Z0-9]/g, '')}`;
         const radio = document.createElement('input');
         radio.type = 'radio';
-        radio.name = 'option';
+        radio.name = `option${index}`; // unique per question
         radio.value = opt;
         radio.id = id;
         radio.required = true;
@@ -263,8 +152,8 @@
         label.setAttribute('for', id);
         label.textContent = opt;
 
-        // Wrap input inside label for easier clicking
-        label.prepend(radio);
+        // Append radio, then label, so label is immediately after radio
+        optsDiv.appendChild(radio);
         optsDiv.appendChild(label);
       });
       qDiv.appendChild(optsDiv);

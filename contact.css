@@ -1,0 +1,94 @@
+@import url('index.css');
+
+main section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(26, 35, 126, 0.09);
+  max-width: 500px;
+  margin: 3rem auto 2rem auto;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-left: 8px solid #f7df1e;
+}
+
+main section h2 {
+  color: #1a237e;
+  margin-top: 0;
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+main section p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+form label {
+  font-weight: bold;
+  color: #1a237e;
+  margin-bottom: 0.3rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  padding: 0.7rem 1rem;
+  border: 2px solid #e3f0fc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f8f9fa;
+  color: #1a237e;
+  transition: border 0.2s;
+  resize: vertical;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+  border-color: #f7df1e;
+  outline: none;
+  background: #fffde7;
+}
+
+form button {
+  background-color: #f7df1e;
+  color: #1a237e;
+  border: 2px solid #1a237e;
+  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-weight: bold;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
+  align-self: flex-start;
+}
+
+form button:hover,
+form button:focus {
+  background: #1a237e;
+  color: #fff;
+  border-color: #f7df1e;
+  box-shadow: 0 4px 10px rgba(26, 35, 126, 0.15);
+}
+
+@media (max-width: 600px) {
+  main section {
+    padding: 1.2rem 0.5rem;
+    max-width: 99vw;
+  }
+  main section h2 {
+    font-size: 1.3rem;
+  }
+  form button {
+    width: 100%;
+    font-size: 1rem;
+    align-self: stretch;
+  }
+}

@@ -6,7 +6,7 @@
   <meta name="description" content="Interactive JavaScript Examples for Learning"/>
   <meta name="keywords" content="JavaScript, Interactive Examples, Coding, Tutorials"/>
   <title>Interactive Examples - Coding for the Web</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="interactive-examples.css" />
 </head>
 <body>
   <div class="content-wrapper">
@@ -54,10 +54,123 @@
         <button onclick="const y=parseFloat(document.getElementById('cat-years').value)||0;const r=document.getElementById('cat-age-result'); r.innerText='That\'s about '+(y*7)+' human years! 🐱➡️👤'; r.classList.remove('cat-age-pop'); void r.offsetWidth; r.classList.add('cat-age-pop'); setTimeout(()=>r.classList.remove('cat-age-pop'),700);">Calculate Human Age</button>
         <div id="cat-age-result" style="margin-top:0.8rem;font-weight:bold;color:#1a237e;"></div>
       </article>
+      <article class="info-card">
+        <h3>🐈 Example 5: Summon a Kitty!</h3>
+        <button id="summon-kitty-btn">Summon Kitty</button>
+      </article>
     </main>
   </div>
   <footer class="site-footer">
     &copy; 2025 Coding for the Web
   </footer>
+  <script>
+    // --- Oneko-style Kitty using local sprites ---
+    // Sprite mapping by direction
+    const kittySpriteMap = {
+      'down':   ['kitty-sprites/down1.png', 'kitty-sprites/down2.png'],
+      'downleft': ['kitty-sprites/downleft1.png', 'kitty-sprites/downleft2.png'],
+      'left':  ['kitty-sprites/left1.png', 'kitty-sprites/left2.png'],
+      'upleft': ['kitty-sprites/upleft1.png', 'kitty-sprites/upleft2.png'],
+      'up':    ['kitty-sprites/up1.png', 'kitty-sprites/up2.png'],
+      'upright': ['kitty-sprites/upright1.png', 'kitty-sprites/upright2.png'],
+      'right': ['kitty-sprites/right1.png', 'kitty-sprites/right2.png'],
+      'downright': ['kitty-sprites/downright1.png', 'kitty-sprites/downright2.png'],
+      'sleep': 'kitty-sprites/sleep1.png',
+      'awake': 'kitty-sprites/awake.png'
+    };
+
+    let kitty = null;
+    let kittyInterval = null;
+    let asleep = false;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let kittyAwakeTimeout = null;
+    let kittyDir = 'down';
+    let kittyFrame = 0;
+
+    function getDirection(dx, dy) {
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      if (angle >= -22.5 && angle < 22.5) return 'right';
+      if (angle >= 22.5 && angle < 67.5) return 'downright';
+      if (angle >= 67.5 && angle < 112.5) return 'down';
+      if (angle >= 112.5 && angle < 157.5) return 'downleft';
+      if (angle >= 157.5 || angle < -157.5) return 'left';
+      if (angle >= -157.5 && angle < -112.5) return 'upleft';
+      if (angle >= -112.5 && angle < -67.5) return 'up';
+      if (angle >= -67.5 && angle < -22.5) return 'upright';
+      return 'down';
+    }
+
+    function createKitty() {
+      if (kitty) return;
+      kitty = document.createElement('img');
+      kitty.src = kittySpriteMap['awake'];
+      kitty.style.position = 'fixed';
+      kitty.style.left = '40px';
+      kitty.style.top = '40px';
+      kitty.style.width = '40px';
+      kitty.style.height = '40px';
+      kitty.style.zIndex = 9999;
+      kitty.style.pointerEvents = 'none';
+      kitty.style.transition = 'filter 0.3s';
+      document.body.appendChild(kitty);
+
+      // Faster, smoother: update more frequently
+      kittyInterval = setInterval(moveKitty, 40);
+    }
+
+    function moveKitty() {
+      if (!kitty) return;
+      const rect = kitty.getBoundingClientRect();
+      const kx = rect.left + 20, ky = rect.top + 20;
+      const dx = mouseX - kx, dy = mouseY - ky;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+      // If close enough, sleep
+      if (dist < 10 && !asleep) {
+        asleep = true;
+        kitty.src = kittySpriteMap['sleep'];
+        return;
+      }
+      // If asleep and mouse moved, wake up after 1s
+      if (asleep && dist >= 10) {
+        if (!kittyAwakeTimeout) {
+          kittyAwakeTimeout = setTimeout(() => {
+            asleep = false;
+            kitty.src = kittySpriteMap['awake'];
+            kittyAwakeTimeout = null;
+          }, 1000);
+        }
+        return;
+      }
+      if (asleep) return;
+
+      // Animate walk and face direction
+      const dir = getDirection(dx, dy);
+      kittyDir = dir;
+      // Only change frame every ~80ms for smoothness
+      if (!moveKitty.lastFrameTime || Date.now() - moveKitty.lastFrameTime > 80) {
+        kittyFrame = (kittyFrame + 1) % 2;
+        moveKitty.lastFrameTime = Date.now();
+      }
+      kitty.src = kittySpriteMap[dir][kittyFrame];
+
+      // Move kitty towards mouse (increase step for speed)
+      const step = Math.min(12, dist); // Faster movement
+      const angle = Math.atan2(dy, dx);
+      const nx = kx + Math.cos(angle) * step;
+      const ny = ky + Math.sin(angle) * step;
+      kitty.style.left = (nx - 20) + 'px';
+      kitty.style.top = (ny - 20) + 'px';
+    }
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      // If mouse moves while asleep, wake up after 1s (handled in moveKitty)
+    });
+
+    document.getElementById('summon-kitty-btn').onclick = createKitty;
+  </script>
 </body>
 </html>
