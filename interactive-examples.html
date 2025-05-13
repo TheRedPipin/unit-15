@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Interactive JavaScript Examples for Learning"/>
+  <meta name="keywords" content="JavaScript, Interactive Examples, Coding, Tutorials"/>
+  <title>Interactive Examples - Coding for the Web</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="content-wrapper">
+    <header class="site-header">
+      <h1>Interactive JavaScript Examples</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="what-is-javascript.html">What is JavaScript?</a></li>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="syntax-basics.html">Syntax & Basics</a></li>
+          <li><a href="interactive-examples.html">Interactive Examples</a></li>
+          <li><a href="video-tutorials.html">Video Tutorials</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2>Try Out Interactive JavaScript Examples</h2>
+      <p>Explore various interactive examples below to show the possibilites of JavaScript!</p>
+    </section>
+    <main class="card-grid">
+      <article class="info-card">
+        <h3>😺 Example 1: Cat Alert</h3>
+        <button onclick="alert('Meow! 🐾 Welcome to JavaScript!')">Show Cat Greeting</button>
+      </article>
+      <article class="info-card">
+        <h3>🐾 Example 2: Change Cat Mood</h3>
+        <p id="cat-mood" style="font-size:1.1rem;transition:color 0.4s, font-size 0.4s;">The cat is calm. 😸</p>
+        <button onclick="const t=document.getElementById('cat-mood'); t.innerText='The cat is excited! 😻'; t.style.color='#f7df1e'; t.style.fontSize='1.4rem'; t.classList.remove('cat-bounce'); void t.offsetWidth; t.classList.add('cat-bounce');">Excite the Cat</button>
+        <button onclick="const t=document.getElementById('cat-mood'); t.innerText='The cat is calm. 😸'; t.style.color=''; t.style.fontSize='1.1rem'; t.classList.remove('cat-bounce'); void t.offsetWidth; t.classList.add('cat-bounce');">Calm the Cat</button>
+      </article>
+      <article class="info-card">
+        <h3>🎨 Example 3: Cat Playground</h3>
+        <button onclick="document.body.style.backgroundColor='#ffe082';const m=document.getElementById('playground-msg'); m.innerText='The cat is playing in the sun! ☀️😺'; m.classList.remove('cat-shake'); void m.offsetWidth; m.classList.add('cat-shake');">Sunny Playground</button>
+        <button onclick="document.body.style.backgroundColor='#b3e5fc';const m=document.getElementById('playground-msg'); m.innerText='The cat is playing in the water! 💧🐱'; m.classList.remove('cat-shake'); void m.offsetWidth; m.classList.add('cat-shake');">Water Playground</button>
+        <button onclick="document.body.style.backgroundColor='#f8f9fa';const m=document.getElementById('playground-msg'); m.innerText='The cat is back home. 🏠😸'; m.classList.remove('cat-shake'); void m.offsetWidth; m.classList.add('cat-shake');">Reset</button>
+        <div id="playground-msg" style="margin-top:0.8rem;font-weight:bold;color:#1a237e;">The cat is at home. 🏠😸</div>
+      </article>
+      <article class="info-card">
+        <h3>🧮 Example 4: Cat Age Calculator</h3>
+        <input type="number" id="cat-years" placeholder="Cat years" min="0" />
+        <button onclick="const y=parseFloat(document.getElementById('cat-years').value)||0;const r=document.getElementById('cat-age-result'); r.innerText='That\'s about '+(y*7)+' human years! 🐱➡️👤'; r.classList.remove('cat-age-pop'); void r.offsetWidth; r.classList.add('cat-age-pop'); setTimeout(()=>r.classList.remove('cat-age-pop'),700);">Calculate Human Age</button>
+        <div id="cat-age-result" style="margin-top:0.8rem;font-weight:bold;color:#1a237e;"></div>
+      </article>
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2025 Coding for the Web
+  </footer>
+</body>
+</html>

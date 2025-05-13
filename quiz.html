@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Quiz to test your knowledge of JavaScript concepts."/>
+  <meta name="keywords" content="JavaScript, Quiz, Coding, Learning"/>
+  <title>JavaScript Quiz</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Quiz Card Styling */
+    .quiz-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(26, 35, 126, 0.09);
+      max-width: 500px;
+      margin: 3rem auto 2rem auto;
+      padding: 2.5rem 2rem 2rem 2rem;
+      border-left: 8px solid #f7df1e;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-card h2 {
+      color: #1a237e;
+      margin-top: 0;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .quiz-question {
+      font-size: 1.18rem;
+      color: #1a237e;
+      margin-bottom: 1.2rem;
+      min-height: 48px;
+    }
+    .quiz-options label {
+      display: block;
+      background: #e3f0fc;
+      color: #1a237e;
+      border: 2px solid #f7df1e;
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+      box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
+    }
+    .quiz-options input[type="radio"] {
+      margin-right: 0.7rem;
+      accent-color: #f7df1e;
+    }
+    .quiz-options label:hover,
+    .quiz-options input[type="radio"]:focus + label {
+      background: #f7df1e;
+      border-color: #1a237e;
+    }
+    .quiz-btn {
+      display: inline-block;
+      background: #f7df1e;
+      color: #1a237e;
+      border: 2px solid #1a237e;
+      border-radius: 6px;
+      padding: 0.7rem 1.5rem;
+      font-weight: bold;
+      font-size: 1.08rem;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 6px rgba(26, 35, 126, 0.08);
+    }
+    .quiz-btn:hover, .quiz-btn:focus {
+      background: #1a237e;
+      color: #fff;
+      border-color: #f7df1e;
+      box-shadow: 0 4px 10px rgba(26, 35, 126, 0.15);
+    }
+    .quiz-progress {
+      color: #1a237e;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      text-align: right;
+    }
+    .quiz-fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s, transform 0.5s;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
+    .quiz-fade.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+    .quiz-score {
+      font-size: 1.5rem;
+      color: #1a237e;
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    @media (max-width: 600px) {
+      .quiz-card {
+        padding: 1.2rem 0.5rem;
+        max-width: 99vw;
+      }
+      .quiz-card h2 {
+        font-size: 1.3rem;
+      }
+      .quiz-btn {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-wrapper">
+    <header class="site-header">
+      <h1>JavaScript Quiz</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="what-is-javascript.html">What is JavaScript?</a></li>
+          <li><a href="getting-started.html">Getting Started</a></li>
+          <li><a href="syntax-basics.html">Syntax & Basics</a></li>
+          <li><a href="interactive-examples.html">Interactive Examples</a></li>
+          <li><a href="video-tutorials.html">Video Tutorials</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="quiz-card" id="quiz-card">
+          <div id="quiz-progress" class="quiz-progress"></div>
+          <!-- Questions will be injected here -->
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <footer class="site-footer">
+    &copy; 2025 Coding for the Web
+  </footer>
+  <script>
+    // Beginner-friendly quiz questions
+    const quizQuestions = [
+      {
+        question: "What does JS stand for?",
+        options: ["JavaScript", "JavaStyle", "JustScript"],
+        answer: "JavaScript"
+      },
+      {
+        question: "Which company developed JavaScript?",
+        options: ["Netscape", "Microsoft", "Oracle"],
+        answer: "Netscape"
+      },
+      {
+        question: "What is the correct syntax to output 'Hello World' in JavaScript?",
+        options: [
+          "print('Hello World')",
+          "console.log('Hello World')",
+          "echo 'Hello World'"
+        ],
+        answer: "console.log('Hello World')"
+      },
+      {
+        question: "Which of these is a way to store a value in JavaScript?",
+        options: [
+          "let myNumber = 5;",
+          "number myNumber = 5;",
+          "var myNumber: 5;"
+        ],
+        answer: "let myNumber = 5;"
+      },
+      {
+        question: "What symbol is used to start a single-line comment?",
+        options: [
+          "//",
+          "<!--",
+          "#"
+        ],
+        answer: "//"
+      },
+      {
+        question: "Which of these is a string?",
+        options: [
+          "'Hello, world!'",
+          "42",
+          "true"
+        ],
+        answer: "'Hello, world!'"
+      },
+      {
+        question: "What does the following code do? alert('Hi!');",
+        options: [
+          "Shows a popup message",
+          "Writes text on the page",
+          "Logs a message to the console"
+        ],
+        answer: "Shows a popup message"
+      },
+      {
+        question: "Which of these is a valid variable name?",
+        options: [
+          "2cats",
+          "myCat",
+          "var"
+        ],
+        answer: "myCat"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    const quizCard = document.getElementById('quiz-card');
+    const progressDiv = document.getElementById('quiz-progress');
+
+    function renderQuestion(index, fadeIn = true) {
+      // Remove any existing question
+      const oldQ = document.querySelector('.quiz-fade.active');
+      if (oldQ) {
+        oldQ.classList.remove('active');
+        setTimeout(() => {
+          if (oldQ.parentNode) oldQ.parentNode.removeChild(oldQ);
+        }, 500);
+      }
+
+      // Progress
+      progressDiv.textContent = `Question ${index + 1} of ${quizQuestions.length}`;
+
+      // Create question container
+      const qDiv = document.createElement('div');
+      qDiv.className = 'quiz-fade' + (fadeIn ? ' active' : '');
+
+      // Question
+      const q = document.createElement('div');
+      q.className = 'quiz-question';
+      q.textContent = quizQuestions[index].question;
+      qDiv.appendChild(q);
+
+      // Options
+      const optsDiv = document.createElement('div');
+      optsDiv.className = 'quiz-options';
+      quizQuestions[index].options.forEach(opt => {
+        const id = `q${index}_${opt.replace(/[^a-zA-Z0-9]/g, '')}`;
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'option';
+        radio.value = opt;
+        radio.id = id;
+        radio.required = true;
+
+        const label = document.createElement('label');
+        label.setAttribute('for', id);
+        label.textContent = opt;
+
+        // Wrap input inside label for easier clicking
+        label.prepend(radio);
+        optsDiv.appendChild(label);
+      });
+      qDiv.appendChild(optsDiv);
+
+      // Next/Submit button
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quiz-btn';
+      btn.textContent = (index === quizQuestions.length - 1) ? 'Finish Quiz' : 'Next';
+      btn.onclick = () => {
+        const checked = qDiv.querySelector('input[type="radio"]:checked');
+        if (!checked) {
+          btn.textContent = "Please select an answer!";
+          btn.style.background = "#ffbdbd";
+          setTimeout(() => {
+            btn.textContent = (index === quizQuestions.length - 1) ? 'Finish Quiz' : 'Next';
+            btn.style.background = "";
+          }, 1200);
+          return;
+        }
+        if (checked.value === quizQuestions[index].answer) score++;
+        nextQuestion();
+      };
+      qDiv.appendChild(btn);
+
+      quizCard.appendChild(qDiv);
+
+      // Animate in
+      setTimeout(() => qDiv.classList.add('active'), 10);
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < quizQuestions.length) {
+        renderQuestion(currentQuestion);
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      progressDiv.textContent = "Quiz Complete!";
+      const oldQ = document.querySelector('.quiz-fade.active');
+      if (oldQ) {
+        oldQ.classList.remove('active');
+        setTimeout(() => {
+          if (oldQ.parentNode) oldQ.parentNode.removeChild(oldQ);
+        }, 500);
+      }
+      const scoreDiv = document.createElement('div');
+      scoreDiv.className = 'quiz-fade quiz-score active';
+      scoreDiv.innerHTML = `
+        <div>Your Score: ${score} / ${quizQuestions.length}</div>
+        <div style="margin-top:1.2rem;">
+          <button class="quiz-btn" onclick="location.reload()">Try Again</button>
+        </div>
+      `;
+      quizCard.appendChild(scoreDiv);
+    }
+
+    // Start quiz
+    renderQuestion(0);
+  </script>
+</body>
+</html>
