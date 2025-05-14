@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Quiz to test your knowledge of JavaScript concepts.">
-  <meta name="keywords" content="JavaScript, Quiz, Coding, Learning">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Quiz to test your knowledge of JavaScript concepts."/>
+  <meta name="keywords" content="JavaScript, Quiz, Coding, Learning"/>
+  <script src="nav-script.js"></script>
   <title>JavaScript Quiz</title>
-  <link rel="stylesheet" href="quiz.css">
+  <link rel="stylesheet" href="quiz.css" />
 </head>
 <body>
   <div class="content-wrapper">
     <header class="site-header">
       <h1>JavaScript Quiz</h1>
       <nav>
-        <ul class="nav-links">
+        <button class="nav-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links" id="mobile-nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="what-is-javascript.html">What is JavaScript?</a></li>
           <li><a href="getting-started.html">Getting Started</a></li>

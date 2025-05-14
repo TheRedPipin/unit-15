@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive JavaScript Examples for Learning">
-  <meta name="keywords" content="JavaScript, Interactive Examples, Coding, Tutorials">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Interactive JavaScript Examples for Learning"/>
+  <meta name="keywords" content="JavaScript, Interactive Examples, Coding, Tutorials"/>
+  <script src="nav-script.js"></script>
   <title>Interactive Examples - Coding for the Web</title>
-  <link rel="stylesheet" href="interactive-examples.css">
+  <link rel="stylesheet" href="interactive-examples.css" />
 </head>
 <body>
   <div class="content-wrapper">
     <header class="site-header">
       <h1>Interactive JavaScript Examples</h1>
       <nav>
-        <ul class="nav-links">
+        <button class="nav-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links" id="mobile-nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="what-is-javascript.html">What is JavaScript?</a></li>
           <li><a href="getting-started.html">Getting Started</a></li>
@@ -54,7 +60,7 @@
         <button onclick="const y=parseFloat(document.getElementById('cat-years').value)||0;const r=document.getElementById('cat-age-result'); r.innerText='That\'s about '+(y*7)+' human years! 🐱➡️👤'; r.classList.remove('cat-age-pop'); void r.offsetWidth; r.classList.add('cat-age-pop'); setTimeout(()=>r.classList.remove('cat-age-pop'),700);">Calculate Human Age</button>
         <div id="cat-age-result" style="margin-top:0.8rem;font-weight:bold;color:#1a237e;"></div>
       </article>
-      <article class="info-card">
+      <article class="info-card" id="summon-kitty-card">
         <h3>🐈 Example 5: Summon a Kitty!</h3>
         <button id="summon-kitty-btn">Summon Kitty</button>
       </article>

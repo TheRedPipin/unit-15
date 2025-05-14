@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn about JavaScript, its history, and its importance in web development.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Learn about JavaScript, its history, and its importance in web development."/>
+  <script src="nav-script.js"></script>
   <title>What is JavaScript? - Coding for the Web</title>
-  <link rel="stylesheet" href="what-is-javascript.css">
+  <link rel="stylesheet" href="what-is-javascript.css" />
 </head>
 <body>
   <div class="content-wrapper">
     <header class="site-header">
       <h1>Coding for the Web</h1>
       <nav>
-        <ul class="nav-links">
+        <button class="nav-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links" id="mobile-nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="what-is-javascript.html">What is JavaScript?</a></li>
           <li><a href="getting-started.html">Getting Started</a></li>
@@ -59,7 +65,7 @@
         </p>
       </article>
     </main>
-  </div>
+  
   <footer class="site-footer">
     &copy; 2025 Coding for the Web
   </footer>
