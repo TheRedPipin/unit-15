@@ -30,6 +30,5 @@ unit-15
 3. Navigate through the links to explore the various resources available.
 
 ## Contributing
-Contributions are welcome! If you have suggestions for improvements or additional content, please feel free to submit a pull request or open an issue.
 
 The cat image is licensed under the BSD 2-Clause License. See `cat-image-license.txt` for details.
