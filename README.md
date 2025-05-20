@@ -14,7 +14,6 @@ unit-15
 ├── video-tutorials.html      # List of video tutorials for learning JavaScript
 ├── quiz.html                 # Quiz to test knowledge of JavaScript concepts
 ├── contact.html              # Contact form or information for user inquiries
-├── styles.css                # Styles for the website
 └── README.md                 # Documentation about the project
 ```
 
